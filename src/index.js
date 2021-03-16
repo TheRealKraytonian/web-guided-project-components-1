@@ -1,3 +1,9 @@
+
+
+// onload?
+// window.onload = evt => console.log('window onload!')
+// document.onload = evt => console.log('window onload!')
+
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
 //  Then loop over these URLs making images as you go:
@@ -6,6 +12,25 @@ const imageData = [
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_3398.jpg' },
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_2947.jpg' },
 ]
+
+function makeImage({ imageURL }) { // destructuring
+  // make an image element
+  const imgElement = document.createElement('img') 
+
+  // set some attributes
+  imgElement.style.width = '10em'
+
+  imgElement.setAttribute('src', imageURL)
+
+  // return the image
+  return imgElement
+}
+
+// check for data and then attach the returned element to the DOM
+imageData.length && imageData.forEach(dataObj => {
+  const newImage = makeImage(dataObj)
+  document.body.prepend(newImage)
+})
 
 
 // TASK 1- Import the data we need to "hydrate" our component.
