@@ -15,7 +15,7 @@ const imageData = [
 
 function makeImage({ imageURL }) { // destructuring
   // make an image element
-  const imgElement = document.createElement('img') 
+  const imgElement = document.createElement('img') // detached img tag
 
   // set some attributes
   imgElement.style.width = '10em'
@@ -27,9 +27,15 @@ function makeImage({ imageURL }) { // destructuring
 }
 
 // check for data and then attach the returned element to the DOM
+// long version of imageData.length looks like
+// if (imageData.length != 0) { imageData.forEach (and so on) }
+// imageData.length &&, is idiomatic JS, and takes advantage
+// of the fact that 0 is 'falsy' in JS
+// to be more correct, you could do !!imageData.length, which turns 0 into a proper true/false
+
 imageData.length && imageData.forEach(dataObj => {
-  const newImage = makeImage(dataObj)
-  document.body.prepend(newImage)
+  const newImage = makeImage(dataObj) // make an image
+  document.body.prepend(newImage)     // attach it somewhere
 })
 
 
@@ -38,22 +44,25 @@ imageData.length && imageData.forEach(dataObj => {
 //  On the other hand, the default export from data/constants.js
 //  Destructure `open` and `close` from the constants
 
+import panelData from './data/panelData'
+import arrows from './data/constants'
 
 // TASK 2- Verify our imports using log statements
-console.log() // log the panelData
-console.log() // log the open arrow
-console.log() // log the close arrow
+console.log(panelData) // log the panelData
+console.log(arrows.open) // log the open arrow
+console.log(arrows.close) // log the close arrow
 
 
 // TASK 3- Comment out the div.panel from index.html and grab its parent element.
 //  We will generate the panel with code, and we'll need the parent
 //  so we can append the code-generated panel to the DOM.
-const accordion = null
+const accordion = document.querySelector('.accordion')
 
 
 // TASK 4- Create a function 'makePanel' that creates a panel exactly as you see it in the HTML.
-function makePanel(/* what data does the panel need? */) {
+function makePanel( { title, content } ) { /* what data does the panel need? */
 
+  console.log(arrows)
 
   // TASK 5- Instantiate all the elements needed for a panel
   const panel = null
