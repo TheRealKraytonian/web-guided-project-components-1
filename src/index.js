@@ -114,7 +114,12 @@ function makePanel( { title, content } ) { /* what data does the panel need? */
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
+
+  const { open, close } = arrows;  // destructuring again!!!
   panelTitle.textContent = title
+  panelContent.textContent = content;
+  openButton.textContent = open;
+  closeButton.textContent = close;
 
 
   // TASK 9- When the 'open' or 'close' buttons are clicked, the content is toggled on/off:
