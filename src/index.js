@@ -77,6 +77,7 @@ function makePanel( { title, content } ) { /* what data does the panel need? */
   const closeButton = document.createElement('button')
 
 
+
   // TASK 6- Setup the structure of our elements
   /*
     <div>                   // panel
@@ -127,21 +128,60 @@ function makePanel( { title, content } ) { /* what data does the panel need? */
   //  - the close button needs to show (the 'hide-btn' class name controls this)
   //  - the contents need to show (the 'toggle-on' class name controls this)
 
+  // toggle DOM command
+
+
+// <div panel> <div panelBar> <div panelButtons> <button>
+
+  // closeButton.addEventListener("click", event => {})
+  // openButton.addEventListener("click", event => {})
+
+  panelButtons.addEventListener("click", event => {
+    openButton.classList.toggle('hide-btn')
+    closeButton.classList.toggle('hide-btn')
+    panelContent.classList.toggle('toggle-on') 
+  })
 
   // don't forget to return the panel!
   return panel
 }
 // console.log(myInnerVariable)
-const panel = makePanel({ title: 'this is our test title', content: 'this is our test content'})
-console.log(panel)
+// const panel = makePanel({ title: 'this is our test title', content: 'this is our test content'})
+
+// accordion.appendChild(panel)
+
 
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
 
+panelData.forEach(panelDataObj => {
+  const newPanel = makePanel(panelDataObj)
+  accordion.append(newPanel);
+  })
+
 
 // [STRETCH] Comment out the links inside the nav and
 // write a linkMaker that takes { href, className, text }
+function linkMaker({ href, className, text }) {
+
+  const newLink = document.createElement('a')
+
 // and returns an anchor tag with the right href, class and textContent.
+
+  return newLink
+}
 // Loop over the 'linkData' in the data folder, generate anchor tags
+import linkData from './data/linkData'
+
+const nav = document.querySelector('nav')
+
+linkData.forEach(linkDataObj => {
+  // use our linkMaker
+  const newLink = linkMaker(linkDataObj)
+
+  // append to the nav
+  nav.append(newLink)
+
+})
 // and append them to the nav.
